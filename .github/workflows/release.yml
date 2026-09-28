@@ -1,0 +1,61 @@
+name: Release
+
+# Every push to main runs this, but it only publishes when the plugin header
+# Version has no tag yet. The header is the single source of truth.
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Read version
+        id: ver
+        run: |
+          VER=$(grep -m1 -oP '^\s*\*\s*Version:\s*\K.+' fluent-sharepoint-sync.php | tr -d '[:space:]')
+          CONST=$(grep -m1 -oP "define\(\s*'FFSP_VERSION',\s*'\K[^']+" fluent-sharepoint-sync.php)
+          STABLE=$(grep -m1 -oP '^Stable tag:\s*\K.+' readme.txt | tr -d '[:space:]')
+          if [ -z "$VER" ] || [ "$VER" != "$CONST" ] || [ "$VER" != "$STABLE" ]; then
+            echo "Version mismatch: header=$VER FFSP_VERSION=$CONST Stable tag=$STABLE" >&2
+            exit 1
+          fi
+          echo "version=$VER" >> "$GITHUB_OUTPUT"
+
+      - name: Skip if already released
+        id: check
+        run: |
+          if git rev-parse "v${{ steps.ver.outputs.version }}" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "Tag v${{ steps.ver.outputs.version }} already exists - nothing to release."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Lint PHP
+        if: steps.check.outputs.exists == 'false'
+        run: |
+          find . -name '*.php' -not -path './.git/*' -print0 | xargs -0 -n1 php -l > /dev/null
+
+      - name: Build zip
+        if: steps.check.outputs.exists == 'false'
+        run: bash build.sh "${{ steps.ver.outputs.version }}" "$GITHUB_WORKSPACE"
+
+      - name: Publish release
+        if: steps.check.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -eu
+          VER="${{ steps.ver.outputs.version }}"
+          git tag "v$VER"
+          git push origin "v$VER"
+          gh release create "v$VER" "fluent-sharepoint-sync-$VER.zip" --title "v$VER" --generate-notes

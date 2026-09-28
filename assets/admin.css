@@ -1,0 +1,94 @@
+/* Fluent Forms → SharePoint Sync — admin styles (scoped to .ffsp-wrap). */
+.ffsp-wrap { --ffsp-accent: #0f6cbd; --ffsp-ok: #107c41; --ffsp-bad: #c42b1c; --ffsp-warn: #b86e00; --ffsp-line: #dcdcde; --ffsp-soft: #f6f7f7; }
+
+.ffsp-header { display: flex; align-items: center; gap: 10px; margin: 8px 0 12px; }
+.ffsp-header h1 { margin: 0; padding: 0; font-size: 22px; }
+.ffsp-header .dashicons { color: var(--ffsp-accent); font-size: 28px; width: 28px; height: 28px; }
+.ffsp-version { color: #787c82; font-size: 12px; }
+
+.ffsp-env { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .03em; background: #e5e5e5; color: #50575e; }
+.ffsp-env--production { background: #fde7e9; color: var(--ffsp-bad); }
+.ffsp-env--staging { background: #fff4ce; color: var(--ffsp-warn); }
+.ffsp-env--local, .ffsp-env--development { background: #e0f0ff; color: var(--ffsp-accent); }
+
+.ffsp-tabs { margin-bottom: 16px; }
+.ffsp-body { max-width: 1400px; }
+
+.ffsp-panel { background: #fff; border: 1px solid var(--ffsp-line); border-radius: 6px; padding: 16px 20px; margin-bottom: 16px; }
+.ffsp-panel > h2 { margin: 0 0 12px; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+.ffsp-panel .form-table th { width: 200px; padding-left: 0; }
+.ffsp-empty { text-align: left; color: #50575e; }
+.ffsp-step { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--ffsp-accent); color: #fff; font-size: 12px; }
+
+.ffsp-grid { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 16px; align-items: start; }
+@media (max-width: 1100px) { .ffsp-grid { grid-template-columns: 1fr; } }
+.ffsp-col-side { position: sticky; top: 46px; }
+@media (max-width: 1100px) { .ffsp-col-side { position: static; } }
+
+.ffsp-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.ffsp-card { display: flex; flex-direction: column; gap: 4px; background: #fff; border: 1px solid var(--ffsp-line); border-left: 4px solid var(--ffsp-accent); border-radius: 6px; padding: 14px 16px; text-decoration: none; color: inherit; }
+.ffsp-card:hover { border-color: var(--ffsp-accent); }
+.ffsp-card__value { font-size: 24px; font-weight: 600; }
+.ffsp-card__label { color: #646970; font-size: 12px; }
+.ffsp-card--success { border-left-color: var(--ffsp-ok); }
+.ffsp-card--failed { border-left-color: var(--ffsp-bad); }
+.ffsp-card--failed .ffsp-card__value { color: var(--ffsp-bad); }
+.ffsp-card--retrying { border-left-color: var(--ffsp-warn); }
+
+.ffsp-checks { margin: 0; }
+.ffsp-checks li { display: flex; align-items: center; gap: 6px; margin: 6px 0; }
+.ffsp-check--ok .dashicons { color: var(--ffsp-ok); }
+.ffsp-check--warn .dashicons { color: var(--ffsp-warn); }
+.ffsp-check--bad .dashicons { color: var(--ffsp-bad); }
+
+.ffsp-badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; background: #f0f0f1; color: #50575e; white-space: nowrap; }
+.ffsp-badge--success, .ffsp-badge--active { background: #e6f4ea; color: var(--ffsp-ok); }
+.ffsp-badge--failed { background: #fde7e9; color: var(--ffsp-bad); }
+.ffsp-badge--retrying, .ffsp-badge--queued, .ffsp-badge--processing, .ffsp-badge--pending { background: #fff4ce; color: var(--ffsp-warn); }
+.ffsp-badge--inactive, .ffsp-badge--skipped { background: #f0f0f1; color: #787c82; }
+
+.ffsp-table td, .ffsp-table th { vertical-align: middle; }
+.ffsp-row-actions { white-space: nowrap; }
+.ffsp-danger { color: var(--ffsp-bad); }
+.ffsp-msg { max-width: 320px; color: #50575e; }
+.ffsp-empty-row { text-align: center; padding: 24px !important; color: #787c82; }
+.ffsp-toolbar { margin-bottom: 12px; }
+.ffsp-filters { margin: 8px 0; clear: both; padding-top: 8px; }
+.ffsp-muted { color: #787c82; }
+.ffsp-mono, .ffsp-pre { font-family: Consolas, Monaco, monospace; font-size: 12px; }
+code.ffsp-mono { word-break: break-all; }
+.ffsp-pre { background: var(--ffsp-soft); border: 1px solid var(--ffsp-line); border-radius: 4px; padding: 10px 12px; max-height: 420px; overflow: auto; white-space: pre-wrap; word-break: break-word; margin: 8px 0; }
+.ffsp-pre--error { background: #fdf2f2; border-color: #f3c9c6; color: var(--ffsp-bad); }
+.ffsp-ok { color: var(--ffsp-ok); }
+.ffsp-bad { color: var(--ffsp-bad); }
+
+.ffsp-mapping { margin-top: 8px; }
+.ffsp-mapping th { font-weight: 600; }
+.ffsp-mapping td { padding: 6px 8px; vertical-align: middle; }
+.ffsp-mapping select, .ffsp-mapping input[type="text"], .ffsp-mapping input:not([type]) { width: 100%; max-width: none; }
+.ffsp-mapping .ffsp-source { min-width: 200px; }
+.ffsp-center { text-align: center; }
+.ffsp-remove { color: var(--ffsp-bad) !important; font-size: 20px; line-height: 1; text-decoration: none; }
+.ffsp-mapping-actions { margin-top: 10px; }
+
+.ffsp-radio { display: inline-block; margin: 2px 14px 2px 0; }
+.ffsp-reveal { display: flex; gap: 6px; align-items: center; background: #fff4ce; padding: 6px 8px; border-radius: 4px; margin: 4px 0 8px; }
+
+.ffsp-switch { display: flex; align-items: center; gap: 10px; cursor: pointer; font-weight: 600; }
+.ffsp-switch input { position: absolute; opacity: 0; }
+.ffsp-switch span { position: relative; width: 38px; height: 22px; border-radius: 999px; background: #c3c4c7; transition: background .15s; flex: none; }
+.ffsp-switch span::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform .15s; }
+.ffsp-switch input:checked + span { background: var(--ffsp-ok); }
+.ffsp-switch input:checked + span::after { transform: translateX(16px); }
+.ffsp-switch input:focus-visible + span { outline: 2px solid var(--ffsp-accent); outline-offset: 2px; }
+
+.ffsp-result { margin-top: 8px; padding: 8px 10px; border-radius: 4px; border: 1px solid var(--ffsp-line); }
+.ffsp-result.is-ok { background: #f0f9f3; border-color: #b7dfc4; }
+.ffsp-result.is-bad { background: #fdf2f2; border-color: #f3c9c6; }
+
+.ffsp-kv th { text-align: left; padding: 4px 16px 4px 0; color: #646970; font-weight: 500; white-space: nowrap; vertical-align: top; }
+.ffsp-kv td { padding: 4px 0; }
+
+.ffsp-mock summary { cursor: pointer; }
+.ffsp-mock[open] summary { margin-bottom: 10px; }
+.ffsp-guide ol li, .ffsp-guide ul li { margin-bottom: 6px; }
