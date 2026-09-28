@@ -4,7 +4,7 @@ Tags: fluent forms, sharepoint, power automate, microsoft 365, integration
 Requires at least: 6.2
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,9 @@ The "When a HTTP request is received" trigger is a premium connector, so the flo
 Yes. Power Automate downloads uploaded files from the site through signed links.
 
 == Changelog ==
+
+= 1.0.1 =
+* Plugin row shows a "Check for updates" link; updates are delivered from GitHub Releases.
 
 = 1.0.0 =
 * First public release.

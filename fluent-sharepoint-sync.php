@@ -3,7 +3,7 @@
  * Plugin Name:       Fluent Forms → SharePoint Sync
  * Plugin URI:        https://github.com/faidodaisen/wp-fluent-form-sharepoint-sync
  * Description:       Send Fluent Forms submissions (fields + uploaded files) to Microsoft SharePoint through a Power Automate HTTP endpoint. Per-form integration profiles, field mapping, signed file links, logs and retry.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 6.2
  * Requires PHP:      7.4
  * Author:            Armiena Group
@@ -18,7 +18,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'FFSP_VERSION', '1.0.0' );
+define( 'FFSP_VERSION', '1.0.1' );
 define( 'FFSP_DB_VERSION', '1.0.0' );
 define( 'FFSP_FILE', __FILE__ );
 define( 'FFSP_DIR', plugin_dir_path( __FILE__ ) );
